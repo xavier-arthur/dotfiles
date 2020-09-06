@@ -1,0 +1,111 @@
+ " __     ___           ____   ____  "
+ " \ \   / (_)_ __ ___ |  _ \ / ___| "
+ "  \ \ / /| | '_ ` _ \| |_) | |     "
+ "   \ V / | | | | | | |  _ <| |___  "
+ "    \_/  |_|_| |_| |_|_| \_\\____| "
+
+
+
+ " deprecated
+
+
+
+"1. <++> vim-plug setup
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    endif
+
+    call plug#begin('~/.vim/plugged')
+
+    Plug 'dracula/vim', { 'as': 'dracula' }
+    Plug 'vim-airline/vim-airline'
+    Plug 'ycm-core/YouCompleteMe'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'Yggdroot/indentLine'
+    Plug 'tpope/vim-fugitive'
+    Plug 'uiiaoo/java-syntax.vim'
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+
+    call plug#end()
+
+"2. <++> Tweaks
+    filetype plugin on
+    filetype indent on
+    set foldmethod=indent
+    set foldlevel=99
+    set autoindent
+    set expandtab
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+    set textwidth=80
+    set nocompatible
+    set relativenumber
+    set number
+    set ruler
+
+"3.<++> Maps and remaps
+    noremap <Space><Space> <Esc>/<++><Cr>
+    nmap J 10j
+    nmap K 10k
+    nmap O A<Cr><Esc>
+    noremap <C-p> ^
+    vnoremap <C-p> ^
+    vnoremap <C-c> "+y
+    map <C-b> "+p
+    map <F2> :Explore<Cr>
+    nmap <C-d> <Esc>:w<Cr>
+
+"4.<++> General autocommands
+    autocmd BufWritePost $HOME/.vimrc :!cp $MYVIMRC
+        \ "$HOME/Documents/repos/vim-configs/vimrc"
+    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    autocmd BufWritePre * %s/\s\+$//e
+    autocmd VimEnter * tab all
+
+"6.<++> colorscheme
+    syntax on
+    set termguicolors
+    colorscheme dracula
+
+"7.<++> Airline
+    let g:airline_powerline_fonts = 1
+    "let g:airline#extensions#tabline#enabled = 1
+
+"8.<++> YCM
+    set completeopt-=preview
+    let g:ycm_key_list_select_completion = ['', '']
+
+"9.<++> Indent-line
+    let g:indentLine_setColors = 1
+
+" LaTeX general
+    autocmd FileType tex inoremap \it \textit{
+    autocmd FileType tex inoremap \bb \textbf{
+    autocmd FileType tex nmap #! :w<Cr><Esc>:!clear<Cr><Esc>:!xelatex %<Cr>
+    autocmd FileType tex nmap <C-o> I%<Esc>j
+
+" Java general
+    autocmd FileType java nmap #! iclass replace<CR>{<CR>public static void
+        \ main(String[] args)<CR>{<CR><++><CR>}<CR>}<Esc>gg/replace<CR>cw
+    autocmd FileType java nmap <C-o> I//<Esc>j
+
+" Python general
+    autocmd FileType python nmap #! i#!/usr/bin/env python3<Enter><Enter><++><Esc>cc
+    autocmd FileType python nmap <C-o> I#<Esc>j
+    autocmd FileType python nmap ## :w<Cr> :!clear && pylint %<Cr>
+    autocmd VimLeave *.py :!chmod +x %
+
+" Scripts general
+    autocmd FileType sh nmap #! i#!/bin/sh<Cr><Cr><Esc>
+    autocmd FileType sh nmap ## :w<Cr> :!clear && shellcheck %<Cr>
+    autocmd VimLeave *.sh :!chmod +x %
+    autocmd FileType sh nmap <C-o> I#<Esc>j
+
+" ulti-snippets
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-x>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"

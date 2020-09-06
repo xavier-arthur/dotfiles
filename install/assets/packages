@@ -1,0 +1,47 @@
+# All non-package lines must start with an #
+# blank lines are fine, s/e/d will remove them
+
+# Development
+build-essential
+cmake
+default-jdk
+gcc
+git
+python
+python3
+python3-devel
+python3-pip
+shellcheck
+
+# Back-end
+chrome-gnome-shell
+curl
+ffmpeg
+ffmpegthumbnailer
+ffmpegthumbs
+p7zip
+unrar
+fonts-powerline
+net-tools
+xclip
+
+# Terminal minimalistic software
+neovim
+htop
+vim
+
+# Others
+alacritty
+brave-browser
+discord
+flameshot
+gimp
+gnome-tweaks
+gparted
+jtest-gtk
+steam
+tilix
+transmission
+vim-gtk3
+vlc
+zsh
