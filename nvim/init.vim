@@ -45,28 +45,33 @@
         set nohlsearch
 
     " Maps and remaps
-        noremap <Space><Space> <Esc>/<Cr>
         noremap <C-p> ^
         vnoremap <C-p> ^
         vnoremap <C-c> "+y
         map <C-b> "+p
-        nmap <C-d> <Esc>:w<Cr>
         inoremap {{ {<Cr>}<Esc>ko
 
         let mapleader = ','
-        noremap <Leader>lt :tabnew<Cr>:e ~/
-        " &-> opens a new blank buffer
 
         noremap <Leader>wq :wq<Cr>
         " &-> saves and quit current buffer
 
+        noremap <Leader>wa :wa<Cr>
+        " &-> saves all buffers
+
+        noremap <Leader>qq :q!<Cr>
+        " &-> quits current buffer
+
         noremap <Leader>qa :qa!<Cr>
         " &-> quits all buffers without saving
 
-        noremap <Leader>j A<Cr><Esc>k
+        noremap <Leader>ww :w<Cr>
+        " &-> saves current buffer
+
+        noremap <Leader>j A<Cr><Esc>
         " &-> adds a blank line below
 
-        noremap <Leader>k I<Cr><Esc>k
+        noremap <Leader>k I<Cr><Esc>
         " &-> adds a blank line above
 
         noremap <Leader>gg :vimgrep  %<Left><Left>
@@ -74,6 +79,9 @@
 
         noremap <Leader>n :cnext<Cr>
         " &-> next error, generally used for vimgrep
+
+        noremap <Leader>lt :tabnew<Cr>:e ~/
+        " &-> opens a new blank buffer
 
     " General autocommands
         autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -85,10 +93,6 @@
         set termguicolors
         colorscheme dracula
         let g:dracula_italic = 1
-
-    " YCM
-       set completeopt-=preview
-       let g:ycm_key_list_select_completion = ['', '']
 
     " Indent-line
         let g:indentLine_setColors = 1

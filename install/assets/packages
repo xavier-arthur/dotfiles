@@ -7,6 +7,8 @@ cmake
 default-jdk
 gcc
 git
+nodejs
+npm
 python
 python3
 python3-devel
