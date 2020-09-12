@@ -12,7 +12,7 @@ set $mod Mod4
 
 # Configure border style <normal|1pixel|pixel xx|none|pixel>
 default_border pixel 1
-default_floating_border normal
+default_floating_border pixel 1
 
 # Hide borders
 hide_edge_borders none
@@ -190,31 +190,30 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="calamares"] floating enable border normal
+for_window [class="calamares"] floating enable
 for_window [class="Clipgrab"] floating enable
 for_window [title="File Transfer*"] floating enable
 for_window [class="fpakman"] floating enable
-for_window [class="Galculator"] floating enable border pixel 1
-for_window [class="GParted"] floating enable border normal
-for_window [title="i3_help"] floating enable sticky enable border normal
+for_window [class="Galculator"] floating enable
+for_window [class="GParted"] floating enable border
+for_window [title="i3_help"] floating enable sticky enable
 for_window [class="Lightdm-settings"] floating enable
-for_window [class="Lxappearance"] floating enable sticky enable border normal
+for_window [class="Lxappearance"] floating enable sticky enable
 for_window [class="Manjaro-hello"] floating enable
-for_window [class="Manjaro Settings Manager"] floating enable border normal
+for_window [class="Manjaro Settings Manager"] floating enable
 for_window [title="MuseScore: Play Panel"] floating enable
-for_window [class="Nitrogen"] floating enable sticky enable border normal
+for_window [class="Nitrogen"] floating enable sticky enable
 for_window [class="Oblogout"] fullscreen enable
 for_window [class="octopi"] floating enable
 for_window [title="About Pale Moon"] floating enable
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pavucontrol"] floating enable
-for_window [class="qt5ct"] floating enable sticky enable border normal
-for_window [class="Qtconfig-qt4"] floating enable sticky enable border normal
-for_window [class="Simple-scan"] floating enable border normal
-for_window [class="(?i)System-config-printer.py"] floating enable border normal
-for_window [class="Skype"] floating enable border normal
-for_window [class="Timeset-gui"] floating enable border normal
-for_window [class="(?i)virtualbox"] floating enable border normal
+for_window [class="qt5ct"] floating enable sticky enable
+for_window [class="Qtconfig-qt4"] floating enable sticky enable
+for_window [class="Simple-scan"] floating enable
+for_window [class="(?i)System-config-printer.py"] floating enable
+for_window [class="Timeset-gui"] floating enable
+for_window [class="(?i)virtualbox"] floating enable
 for_window [class="Xfburn"] floating enable
 
 # switch to workspace with urgent window automatically
@@ -281,9 +280,10 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id pamac-tray
 exec --no-startup-id clipit
 exec --no-startup-id xautolock -time 10 -locker blurlock
+exec_always --no-startup-id ~/.i3/alternate_layouts.py
 exec_always --no-startup-id ff-theme-util
 exec_always --no-startup-id fix_xcursor
-exec_always --no-startup-id xwallpaper --zoom ~/arch.png
+exec_always --no-startup-id xwallpaper --zoom ~/Pictures/wall.png
 
 # Color palette used for the terminal ( ~/.Xresources file )
 # Colors are gathered based on the documentation:
@@ -328,7 +328,7 @@ bar {
 
 	bindsym button4 nop
 	bindsym button5 nop
-#   font xft:IBMPles Mono Regular Nerd Font
+    font xft:IBM Plex Mono Nerd Font 10
 	strip_workspace_numbers yes
 
     colors {
@@ -344,19 +344,6 @@ bar {
         urgent_workspace   #16a085 #FDF6E3 #E5201D
     }
 }
-# bar { colors {
-#         background #2f343f
-#         statusline #2f343f
-#         separator #4b5262
-
-#         # colour of border, background, and text
-#         focused_workspace       #2f343f #bf616a #d8dee8
-#         active_workspace        #2f343f #2f343f #d8dee8
-#         inactive_workspace      #2f343f #2f343f #d8dee8
-#         urgent_workspacei       #2f343f #ebcb8b #2f343f
-#     }
-#         status_command i3status
-# }
 
 # hide/unhide i3status bar
 bindsym $mod+Shift+m bar mode toggle
@@ -385,11 +372,11 @@ gaps outer -2
 # gaps outer all plus 5
 
 # Smart gaps (gaps used if only more than one container on the workspace)
-smart_gaps on
+# smart_gaps true
 
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
-smart_borders on
+# smart_borders on
 
 # Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
 set $mode_gaps Gaps: (o) outer, (i) inner
