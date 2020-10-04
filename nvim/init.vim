@@ -26,6 +26,7 @@
         Plug 'tpope/vim-commentary'
         Plug 'sheerun/vim-polyglot'
         Plug 'ryanoasis/vim-devicons'
+        Plug 'preservim/nerdtree'
 
     call plug#end()
 
@@ -52,6 +53,8 @@
     map <C-b> "+p
     inoremap {{ {<Cr>}<Esc>ko
 
+    vnoremap " "-c""<Esc>"-Pe
+
     let mapleader = ','
     noremap <Leader>wq :wq<Cr>
     " &-> saves and quit current buffer
@@ -71,7 +74,7 @@
     noremap <Leader>j A<Cr><Esc>
     " &-> adds a blank line below
 
-    noremap <Leader>k I<Cr><Esc>
+    noremap <Leader>k I<Cr><Esc>k
     " &-> adds a blank line above
 
     noremap <Leader>gg :vimgrep  %<Left><Left>
@@ -132,7 +135,7 @@
     " Java general
     augroup java
         autocmd FileType java nmap #! i
-        \ class replace<CR>{<CR>public static void
+        \class replace<CR>{<CR>public static void
         \ main(String[] args)<CR>{<CR><CR>}<CR>}<Esc>gg/replace<CR>cw
     augroup END
 
@@ -149,3 +152,7 @@
         autocmd FileType sh nmap ## :w<Cr> :!clear && shellcheck %<Cr>
         autocmd VimLeave *.sh :!chmod +x %
     augroup END
+
+    " COCK.nvim
+    nmap <silent> [g <Plug>(coc-diagnostic-prev)
+    nmap <silent> ]g <Plug>(coc-diagnostic-next)

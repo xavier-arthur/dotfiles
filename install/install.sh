@@ -13,6 +13,7 @@ mkdir "$HOME/.icons"
 copy_dotfiles() {
 
     cp ../zsh/zshrc "$HOME/.zshrc"
+    cp ../zsh/bira-bora.zsh-theme "$HOME/.oh-my-zsh/themes"
 
     mkdir -p "$HOME/.config/nvim"
     cp ../nvim/init.vim "$HOME/.config/nvim"
@@ -41,6 +42,8 @@ package_install() {
     echo "zsh syntax highlighting"
     git clone "https://github.com/zsh-users/zsh-syntax-highlighting.git" \
         "$HOME/.zsh-syntax-highlighting"
+
+    # installing oh-my-zsh
     sh -c "$(curl -fsSL \
         https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 }

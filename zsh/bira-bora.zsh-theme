@@ -1,3 +1,4 @@
+
 # ZSH Theme - Preview: https://gyazo.com/8becc8a7ed5ab54a0262a470555c3eed.png
 local return_code="%(?..%{$fg[red]%}%? ↵%{$reset_color%})"
 
@@ -20,7 +21,7 @@ PROMPT="╭─${user_host}${current_dir}${rvm_ruby}${git_branch}${venv_prompt}
 ╰─%B${user_symbol}%b "
 RPROMPT="%B${return_code}%b"
 
-ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[yellow]%}‹"
+ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %{$reset_color%}"
 
 ZSH_THEME_RUBY_PROMPT_PREFIX="%{$fg[red]%}‹"
