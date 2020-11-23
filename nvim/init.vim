@@ -27,6 +27,7 @@
         Plug 'sheerun/vim-polyglot'
         Plug 'ryanoasis/vim-devicons'
         Plug 'preservim/nerdtree'
+        Plug 'junegunn/vim-easy-align'
 
     call plug#end()
 
@@ -96,6 +97,7 @@
     autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
     autocmd BufWritePre * %s/\s\+$//e
 
+
     " colorscheme
     syntax on
     set termguicolors
@@ -127,7 +129,6 @@
 
     " LaTeX general
     augroup tex
-        autocmd FileType tex inoremap \it \textit{
         autocmd FileType tex inoremap \bb \textbf{
         autocmd FileType tex nmap #! :w<Cr><Esc>:!clear<Cr><Esc>:!xelatex %<Cr>
     augroup END
@@ -153,6 +154,29 @@
         autocmd VimLeave *.sh :!chmod +x %
     augroup END
 
+    " Rust general
+    augroup rs
+        autocmd FileType rust nmap ## :!cargo run<Cr>
+    augroup END
+
+    " Markdown general
+    augroup md
+        autocmd FileType markdown nmap <Leader>n /\[.*\]<Cr>
+        autocmd FileType markdown nmap <Leader>p ?\[.*\]<Cr>
+        autocmd FileType markdown nmap <Leader>c a ✔<Esc>
+        autocmd FileType markdown nmap <Leader>x a ✖<Esc>
+        autocmd FileType markdown cnoreabbrev cbox s/$/\ [ \]
+    augroup END
+
     " COCK.nvim
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+    " HTML
+    augroup HTML
+        autocmd FileType html nmap ## :silent !xdg-open %<Cr>
+    augroup END
+
+    " easy allign
+    nmap ga <Plug>(EasyAlign)
+    xmap ga <Plug>(EasyAlign)
