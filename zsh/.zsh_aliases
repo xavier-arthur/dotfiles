@@ -1,0 +1,36 @@
+function runts() {
+    tsc $1 && node $(echo "$1" | sed 's/\.ts/\.js/')
+}
+
+function prj() {
+    mkdir $1
+    cd $1
+    mkdir src
+    cd src
+    nvim "${1}.${2}"
+}
+
+function startnpm() {
+    npm run tsc
+    cd ../build
+    node app.js
+    cd -
+}
+
+function newtex() {
+    mkdir "$1" && cd "$1"
+    vim "${1}.tex"
+}
+
+alias javc='javac -d ../bin'
+alias vof='cd $HOME/dump/videos'
+alias vial='vim -p *'
+alias shck='shellcheck'
+alias xclipc='xclip -selection clipboard'
+alias au='cd ~/code/scripts/actually-useful'
+alias open='$HOME/code/scripts/actually-useful/open.sh'
+alias vi='nvim'
+alias vinit='vi ~/.config/nvim/init.vim'
+alias enigma='/home/arthurx/Documents/repos/enigma/src/main.py'
+alias jsc='npm run tsc'
+alias naut='nautilus . > /dev/null 2>&1 &'

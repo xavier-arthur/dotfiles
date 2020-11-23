@@ -100,27 +100,8 @@ source $ZSH/oh-my-zsh.sh
 
 bindkey -v
 bindkey -v '^?' backward-delete-char
+#        ^ vi mode and <BS> to delete
 
-function newjava() {
-        dir=$(echo "$1" | sed 's/./\U&/')
-        mkdir -p "$dir/src" && cd "$dir/src"
-        vim "${dir}.java"
-}
-
-function newtex() {
-        mkdir "$1" && cd "$1"
-        vim "${1}.tex"
-}
-
-alias javc='javac -d ../bin'
-alias vof='cd $HOME/dump/videos'
-alias vial='vim -p *'
-alias shck='shellcheck'
-alias xclipc='xclip -selection clipboard'
-alias au='cd ~/code/scripts/actually-useful'
-alias xdg='xdg-open'
-alias vi='nvim'
-alias vinit='vi ~/.config/nvim/init.vim'
-alias enigma='/home/arthurx/Documents/repos/enigma/src/main.py'
+source "$HOME/.zsh_aliases"
 
 source $HOME/.zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
