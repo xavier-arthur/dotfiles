@@ -1,5 +1,10 @@
 # All non-package lines must start with an #
-# blank lines are fine, s/e/d will remove them
+# blank lines are fine, script ed will remove them
+
+# priorities
+steam
+brave-browser
+neovim
 
 # Development
 build-essential
@@ -28,22 +33,18 @@ net-tools
 xclip
 
 # Terminal minimalistic software
-neovim
 htop
 vim
 
 # Others
 alacritty
-brave-browser
 discord
 flameshot
 gimp
 gnome-tweaks
 gparted
-jtest-gtk
-steam
-tilix
 transmission
 vim-gtk3
 vlc
 zsh
+plank

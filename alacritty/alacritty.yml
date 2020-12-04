@@ -85,7 +85,7 @@ colors:
 font:
   size: 11
   normal:
-    family: IBM Plex Mono
+    family: IBMPlex Mono Nerd Font
     style: Regular
 
   mouse:
