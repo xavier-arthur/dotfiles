@@ -2,8 +2,9 @@
 # blank lines are fine, script ed will remove them
 
 # priorities
-steam
+alacritty
 brave-browser
+steam
 neovim
 
 # Development
@@ -16,7 +17,6 @@ nodejs
 npm
 python
 python3
-python3-devel
 python3-pip
 shellcheck
 
@@ -37,7 +37,6 @@ htop
 vim
 
 # Others
-alacritty
 discord
 flameshot
 gimp

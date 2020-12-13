@@ -49,6 +49,8 @@ package_install() {
     # installing oh-my-zsh
     sh -c "$(curl -fsSL \
         https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+    pip3 install jedi neovim
 }
 
 ytdl_install() {
