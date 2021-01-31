@@ -61,9 +61,26 @@ ytdl_install() {
     sudo chmod a+rx /usr/local/bin/youtube-dl
 }
 
-package_install
-copy_dotfiles
-ytdl_install
 
 printf "install tex packages? [y/*] "
 read -r tex ; [ "$tex" = "y" ] && sudo apt install texlive-full
+
+generate() {
+    printf "enter your email:"
+    read -r email
+
+    ssh-keygen -t ed25519 -C "$email"
+    eval "$(ssh-agent -s)"
+    ssh-add ~/.ssh/id_ed25519
+
+    printf "copy key to clipboard? [y/n] "
+
+    read -r choice
+    [ "$choice" = "y" ] && xclip -selection clipboard < ~/.ssh/id_ed25519.pub
+
+}
+
+package_install
+copy_dotfiles
+ytdl_install
+generate

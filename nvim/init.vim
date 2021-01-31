@@ -8,7 +8,7 @@
     if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
         silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
             \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-        autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+        au! VimEnter * PlugInstall --sync | source $MYVIMRC
     endif
 
     call plug#begin('~/.config/nvim/plugged')
@@ -26,12 +26,15 @@
         Plug 'tpope/vim-commentary'
         Plug 'sheerun/vim-polyglot'
         Plug 'ryanoasis/vim-devicons'
-        Plug 'preservim/nerdtree'
         Plug 'junegunn/vim-easy-align'
+        Plug 'mcchrish/nnn.vim'
 
     call plug#end()
 
     " Tweaks
+    set spelllang=pt
+    " set spell
+    " setlocal spell
     filetype plugin on
     filetype indent on
     set foldmethod=indent
@@ -46,19 +49,34 @@
     set number
     set ruler
     set nohlsearch
+    set hidden
 
     " Maps and remaps
+    cnoreabbrev notenow e ~/.notes.md<Cr>Go<Esc>:r !~/code/scripts/actually-useful/notenow.sh<Cr>o
     noremap <C-p> ^
     vnoremap <C-p> ^
+    " copy from system clipboard
     vnoremap <C-c> "+y
+    " paste from system clipboard
     map <C-b> "+p
+    " quick brackets
     inoremap {{ {<Cr>}<Esc>ko
 
-    vnoremap " "-c""<Esc>"-Pe
+    " remaps control + backspace to C-w, this may change depending on the
+    " terminal emulator
+    inoremap  <C-w>
+
+    vnoremap "" "-c""<Esc>"-Pe
 
     let mapleader = ','
     noremap <Leader>wq :wq<Cr>
     " &-> saves and quit current buffer
+
+    noremap <Leader>ss :set spell<Cr>
+    " &-> enables spellcheck
+
+    noremap <Leader>n :Np<Cr>
+    " &-> opens nnn
 
     noremap <Leader>wa :wa<Cr>
     " &-> saves all buffers
@@ -94,13 +112,13 @@
     " &-> runs silently shell command (buffer cannot bet modfied whilist)
 
     " General autocommands
-    autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-    autocmd BufWritePre * %s/\s\+$//e
-
+    au! VimEnter setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+    au! BufWrite * %s/\s\+$//e
 
     " colorscheme
     syntax on
     set termguicolors
+
     colorscheme dracula
     augroup dracula_customization
     au!
@@ -129,43 +147,43 @@
 
     " LaTeX general
     augroup tex
-        autocmd FileType tex inoremap \bb \textbf{
-        autocmd FileType tex nmap #! :w<Cr><Esc>:!clear<Cr><Esc>:!xelatex %<Cr>
+        au! FileType tex inoremap \bb \textbf{
+        au! FileType tex nmap #! :w<Cr><Esc>:!clear<Cr><Esc>:!xelatex %<Cr>
     augroup END
 
     " Java general
     augroup java
-        autocmd FileType java nmap #! i
+        au! FileType java nmap #! i
         \class replace<CR>{<CR>public static void
         \ main(String[] args)<CR>{<CR><CR>}<CR>}<Esc>gg/replace<CR>cw
     augroup END
 
     " Python general
     augroup python
-        autocmd FileType python nmap #! i#!/usr/bin/env python3<Enter><Enter><Esc>cc
-        autocmd FileType python nmap ## :w<Cr> :!clear && pylint %<Cr>
-        autocmd VimLeave *.py :!chmod +x %
+        au! FileType python nmap #! i#!/usr/bin/env python3<Enter><Enter><Esc>cc
+        au! FileType python nmap ## :w<Cr> :!clear && pylint %<Cr>
+        au! VimLeave *.py :!chmod +x %
     augroup END
 
     " Scripts general
     augroup sh
-        autocmd FileType sh nmap #! i#!/bin/sh<Cr><Cr><Esc>
-        autocmd FileType sh nmap ## :w<Cr> :!clear && shellcheck %<Cr>
-        autocmd VimLeave *.sh :!chmod +x %
+        au! FileType sh nmap #! i#!/bin/sh<Cr><Cr><Esc>
+        au! FileType sh nmap ## :w<Cr> :!clear && shellcheck %<Cr>
+        au! VimLeave *.sh :!chmod +x %
     augroup END
 
     " Rust general
     augroup rs
-        autocmd FileType rust nmap ## :!cargo run<Cr>
+        au! FileType rust nmap ## :!cargo run<Cr>
     augroup END
 
     " Markdown general
     augroup md
-        autocmd FileType markdown nmap <Leader>n /\[.*\]<Cr>
-        autocmd FileType markdown nmap <Leader>p ?\[.*\]<Cr>
-        autocmd FileType markdown nmap <Leader>c a ✔<Esc>
-        autocmd FileType markdown nmap <Leader>x a ✖<Esc>
-        autocmd FileType markdown cnoreabbrev cbox s/$/\ [ \]
+        au! FileType markdown nmap <Leader>n /\[.*\]<Cr>
+        au! FileType markdown nmap <Leader>p ?\[.*\]<Cr>
+        au! FileType markdown nmap <Leader>c a ✔<Esc>
+        au! FileType markdown nmap <Leader>x a ✖<Esc>
+        au! FileType markdown cnoreabbrev cbox s/$/\ [ \]
     augroup END
 
     " COCK.nvim
@@ -174,9 +192,12 @@
 
     " HTML
     augroup HTML
-        autocmd FileType html nmap ## :silent !xdg-open %<Cr>
+        au! FileType html nmap ## :silent !xdg-open %<Cr>
     augroup END
 
     " easy allign
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
+
+    " nnn
+    let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
