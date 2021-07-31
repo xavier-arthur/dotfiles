@@ -18,6 +18,7 @@
         Plug 'vim-airline/vim-airline-themes'
         Plug 'Yggdroot/indentLine'
         Plug 'tpope/vim-fugitive'
+        Plug 'tpope/vim-surround'
         Plug 'uiiaoo/java-syntax.vim'
         Plug 'SirVer/ultisnips'
         Plug 'honza/vim-snippets'
@@ -52,7 +53,7 @@
     set hidden
 
     " Maps and remaps
-    cnoreabbrev notenow e ~/.notes.md<Cr>Go<Esc>:r !~/code/scripts/actually-useful/notenow.sh<Cr>o
+    cnoreabbrev date r !date<Cr>
     noremap <C-p> ^
     vnoremap <C-p> ^
     " copy from system clipboard
