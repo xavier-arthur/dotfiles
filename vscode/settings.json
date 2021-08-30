@@ -1,0 +1,121 @@
+{
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.tokenColorCustomizations": {
+        "textMateRules": [
+            {
+                "scope": [
+                    // following will be in italic (=FlottFlott)
+                    "entity.name.type.class", //class names
+                    "keyword", //import, export, return…
+                    "constant", //String, Number, Boolean…, this, super
+                    "storage.modifier", //static keyword
+                    "storage.type.class.js", //class keyword
+                    "storage.type.function.ts",
+                    "meta.function.ts",
+                    "entity.name.function.ts",
+                    "storage.type.namespace.ts",
+                    "meta.interface.ts",
+                    "storage.type.ts",
+                    // "meta.namespace.declaration.ts",
+                    // "source.ts"
+                ],
+                "settings": {
+                    "fontStyle": "italic"
+                }
+            },
+
+            {
+                "scope": [
+                    // following will be excluded from italics (VSCode has some defaults for italics)
+                    "comment",
+                    "invalid",
+                    "keyword.operator",
+                    "constant.numeric.css",
+                    "keyword.other.unit.px.css",
+                    "constant.numeric.decimal.js",
+                    "entity.name.type.interface.ts",
+                    "variable.other.property.ts",
+                    "entity.name.type.class",
+                    "variable.parameter.ts",
+                    "parameter",
+                ],
+                "settings": {
+                    "fontStyle": ""
+                }
+            }
+        ]
+    },
+
+    "editor.fontLigatures": false,
+    "editor.fontFamily": "IBM Plex Mono",
+    "editor.fontSize": 14.5,
+
+    // VIM
+    "vim.statusBarColorControl":                 true, // ativar?
+    "vim.statusBarColors.normal":                ["#282A36", "#BD93F9"],
+    "vim.statusBarColors.insert":                ["#282A36", "#50FA7B"],
+    "vim.statusBarColors.visual":                ["#282A36", "#F1FA8C"],
+    "vim.statusBarColors.visualline":            ["#282A36", "#F1FA8C"],
+    "vim.statusBarColors.visualblock":           ["#282A36", "#F1FA8C"],
+    "vim.statusBarColors.replace":               ["#282A36", "#FFB86C"],
+    "vim.statusBarColors.commandlineinprogress": ["#282A36", "#FFFFFF"],
+    "vim.statusBarColors.searchinprogressmode":  ["#282A36", "#FFFFFF"],
+    "vim.statusBarColors.easymotioninputmode":   ["#282A36", "#50FA7B"],
+    "vim.statusBarColors.surroundinputmode":     ["#282A36", "#8BE9FD"],
+
+    // Normalmode rebindings
+    "vim.normalModeKeyBindings": [
+        {
+            "before": [",", "j"],
+            "after": ["o", "<esc>"]
+        }, {
+            "before": [",", "k"],
+            "after": ["O", "<esc>"]
+        }, {
+            "before": ["<C-]>"],
+            "after": ["^"]
+        }
+    ],
+
+    "vim.insertModeKeyBindings": [
+        {
+            "before": ["{", "{"],
+            "after":  ["{", "<Cr>", "}", "<Esc>", "O"]
+        },
+        {
+            "before": ["[", "["],
+            "after":  ["[", "<Cr>", "]", "<Esc>", "O"]
+        }
+    ],
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#282A36",
+        "statusBar.noFolderBackground": "#282A36",
+        "statusBar.debuggingBackground": "#282A36",
+        "statusBar.foreground": "#F1FA8C",
+        "statusBar.debuggingForeground": "#F1FA8C"
+    },
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    "editor.autoClosingBrackets": "never",
+    "security.workspace.trust.untrustedFiles": "open",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+
+    "redhat.telemetry.enabled": false,
+    "oneDarkPro.italic": false,
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "window.menuBarVisibility": "toggle",
+    "debug.javascript.autoAttachFilter": "disabled",
+    "extensions.ignoreRecommendations": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+}
