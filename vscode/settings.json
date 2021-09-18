@@ -1,5 +1,4 @@
 {
-    "workbench.colorTheme": "One Dark Pro",
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -16,6 +15,8 @@
                     "storage.type.namespace.ts",
                     "meta.interface.ts",
                     "storage.type.ts",
+                    "entity.name.function.js",
+                    "storage.type.js"
                     // "meta.namespace.declaration.ts",
                     // "source.ts"
                 ],
@@ -74,6 +75,12 @@
         }, {
             "before": ["<C-]>"],
             "after": ["^"]
+        }, {
+            "before": ["j"],
+            "after": ["g", "j"]
+        }, {
+            "before": ["k"],
+            "after": ["g", "k"]
         }
     ],
 
@@ -81,18 +88,17 @@
         {
             "before": ["{", "{"],
             "after":  ["{", "<Cr>", "}", "<Esc>", "O"]
-        },
-        {
+        }, {
             "before": ["[", "["],
             "after":  ["[", "<Cr>", "]", "<Esc>", "O"]
-        }
+        } 
     ],
     "workbench.colorCustomizations": {
         "statusBar.background": "#282A36",
         "statusBar.noFolderBackground": "#282A36",
         "statusBar.debuggingBackground": "#282A36",
-        "statusBar.foreground": "#F1FA8C",
-        "statusBar.debuggingForeground": "#F1FA8C"
+        "statusBar.foreground": "#BD93F9",
+        "statusBar.debuggingForeground": "#BD93F9"
     },
     "workbench.iconTheme": "material-icon-theme",
     "workbench.editorAssociations": {
@@ -118,4 +124,5 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "workbench.colorTheme": "One Dark Pro",
 }
