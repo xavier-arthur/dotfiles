@@ -1,4 +1,5 @@
 {
+    "workbench.colorTheme": "One Dark Pro",
     "editor.tokenColorCustomizations": {
         "textMateRules": [
             {
@@ -12,11 +13,15 @@
                     "storage.type.function.ts",
                     "meta.function.ts",
                     "entity.name.function.ts",
+                    "entity.name.function.js",
                     "storage.type.namespace.ts",
                     "meta.interface.ts",
                     "storage.type.ts",
-                    "entity.name.function.js",
-                    "storage.type.js"
+                    "storage.type.js",
+                    "storage.type.function.php",
+                    "storage.type.function.js",
+                    "entity.name.function.php",
+                    "meta.function-call.php"
                     // "meta.namespace.declaration.ts",
                     // "source.ts"
                 ],
@@ -37,7 +42,8 @@
                     "entity.name.type.interface.ts",
                     "variable.other.property.ts",
                     "entity.name.type.class",
-                    "variable.parameter.ts",
+                    "variable.parameter",
+                    "variable.other.php",
                     "parameter",
                 ],
                 "settings": {
@@ -49,20 +55,10 @@
 
     "editor.fontLigatures": false,
     "editor.fontFamily": "IBM Plex Mono",
-    "editor.fontSize": 14.5,
+    "editor.fontSize": 13.5,
 
     // VIM
-    "vim.statusBarColorControl":                 true, // ativar?
-    "vim.statusBarColors.normal":                ["#282A36", "#BD93F9"],
-    "vim.statusBarColors.insert":                ["#282A36", "#50FA7B"],
-    "vim.statusBarColors.visual":                ["#282A36", "#F1FA8C"],
-    "vim.statusBarColors.visualline":            ["#282A36", "#F1FA8C"],
-    "vim.statusBarColors.visualblock":           ["#282A36", "#F1FA8C"],
-    "vim.statusBarColors.replace":               ["#282A36", "#FFB86C"],
-    "vim.statusBarColors.commandlineinprogress": ["#282A36", "#FFFFFF"],
-    "vim.statusBarColors.searchinprogressmode":  ["#282A36", "#FFFFFF"],
-    "vim.statusBarColors.easymotioninputmode":   ["#282A36", "#50FA7B"],
-    "vim.statusBarColors.surroundinputmode":     ["#282A36", "#8BE9FD"],
+    
 
     // Normalmode rebindings
     "vim.normalModeKeyBindings": [
@@ -77,10 +73,19 @@
             "after": ["^"]
         }, {
             "before": ["j"],
-            "after": ["g", "j"]
+            "after":  ["g", "j"]
         }, {
             "before": ["k"],
             "after": ["g", "k"]
+        }, {
+            "before": ["<C-O>"],
+            "after":  ["<C-o>"]
+        }, {
+            "before": ["H"],
+            "after" : ["g", "T"]
+        }, {
+            "before": ["L"],
+            "after" : ["g", "t"]
         }
     ],
 
@@ -88,34 +93,38 @@
         {
             "before": ["{", "{"],
             "after":  ["{", "<Cr>", "}", "<Esc>", "O"]
-        }, {
+        },
+        {
             "before": ["[", "["],
             "after":  ["[", "<Cr>", "]", "<Esc>", "O"]
-        } 
+        }
     ],
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#282A36",
-        "statusBar.noFolderBackground": "#282A36",
-        "statusBar.debuggingBackground": "#282A36",
-        "statusBar.foreground": "#BD93F9",
-        "statusBar.debuggingForeground": "#BD93F9"
-    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+          "before": [",", "%"],
+          "commands": [
+            {
+              "command": "editor.emmet.action.matchTag"
+            }
+          ],
+        }
+    ],
+
+    //     }, {
+    //       "before": [",", "<Cr>"],
+    //       "commands": [
+    //         {
+    //             "command": "sqltools.executeCurrentQuery"
+    //         }
+    //       ]
+    //     }
+    // ],
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.editorAssociations": {
-        "*.ipynb": "jupyter-notebook"
-    },
     "editor.autoClosingBrackets": "never",
     "security.workspace.trust.untrustedFiles": "open",
-    "notebook.cellToolbarLocation": {
-        "default": "right",
-        "jupyter-notebook": "left"
-    },
 
-    "redhat.telemetry.enabled": false,
     "oneDarkPro.italic": false,
     "editor.suggestSelection": "first",
-    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
-    "window.menuBarVisibility": "toggle",
     "debug.javascript.autoAttachFilter": "disabled",
     "extensions.ignoreRecommendations": true,
     "files.exclude": {
@@ -124,5 +133,8 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
-    "workbench.colorTheme": "One Dark Pro",
+    "editor.minimap.enabled": false,
+    "editor.renderWhitespace": "none",
+    "window.menuBarVisibility": "compact",
+
 }
