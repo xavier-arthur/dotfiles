@@ -13,8 +13,8 @@ CONFIG=$(cat <<'END_HEREDOC'
         DocumentRoot {document_root}
  
         <Directory {document_root}>
-            Options FollowSymLinks
-            AllowOverride none
+            Options FollowSymLinks Indexes
+            AllowOverride all
         </Directory>
  
         ErrorLog ${APACHE_LOG_DIR}/error.log
