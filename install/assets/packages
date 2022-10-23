@@ -1,8 +1,8 @@
 # All non-package lines must start with an #
-# blank lines are fine, script ed will remove them
+# blank lines are fine, sed will remove them
 
 # priorities
-alacritty
+# alacritty
 brave-browser
 steam
 neovim
@@ -35,6 +35,7 @@ xclip
 # Terminal minimalistic software
 htop
 vim
+ctop
 
 # Others
 discord
@@ -46,4 +47,5 @@ transmission
 vim-gtk3
 vlc
 zsh
-plank
+wmctrl
+# plank
