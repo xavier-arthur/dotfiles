@@ -19,16 +19,28 @@
         Plug 'Yggdroot/indentLine'
         Plug 'tpope/vim-fugitive'
         Plug 'tpope/vim-surround'
-        Plug 'uiiaoo/java-syntax.vim'
+
+		" snippets
         Plug 'SirVer/ultisnips'
         Plug 'honza/vim-snippets'
+
         Plug 'neoclide/coc.nvim'
-        Plug 'Shougo/echodoc.vim'
         Plug 'tpope/vim-commentary'
         Plug 'sheerun/vim-polyglot'
-        Plug 'ryanoasis/vim-devicons'
         Plug 'junegunn/vim-easy-align'
-        Plug 'mcchrish/nnn.vim'
+        Plug 'preservim/nerdtree'
+        Plug 'joshdick/onedark.vim'
+        Plug 'mhinz/vim-startify'
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim'
+        Plug 'dandavison/delta'
+        " Plug 'uiiaoo/java-syntax.vim'
+        " Plug 'ryanoasis/vim-devicons'
+        " Plug 'Shougo/echodoc.vim'
+        " Plug 'mcchrish/nnn.vim'
+        " Plug 'nvim-lua/plenary.nvim'
+        " Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+        " Plug 'jayli/vim-easycomplete'
 
     call plug#end()
 
@@ -38,10 +50,12 @@
     " setlocal spell
     filetype plugin on
     filetype indent on
+    set smartcase
+    set ignorecase
     set foldmethod=indent
     set foldlevel=99
     set autoindent
-    set expandtab
+    " set expandtab
     set tabstop=4
     set softtabstop=4
     set shiftwidth=4
@@ -54,8 +68,6 @@
 
     " Maps and remaps
     cnoreabbrev date r !date<Cr>
-    noremap <C-p> ^
-    vnoremap <C-p> ^
     " copy from system clipboard
     vnoremap <C-c> "+y
     " paste from system clipboard
@@ -76,7 +88,7 @@
     noremap <Leader>ss :set spell<Cr>
     " &-> enables spellcheck
 
-    noremap <Leader>n :Np<Cr>
+    " noremap <Leader>n :Np<Cr>
     " &-> opens nnn
 
     noremap <Leader>wa :wa<Cr>
@@ -120,7 +132,7 @@
     syntax on
     set termguicolors
 
-    colorscheme dracula
+    colorscheme onedark
     augroup dracula_customization
     au!
         let g:dracula_italic = 1
@@ -133,17 +145,12 @@
     " Indent-line
     let g:indentLine_setColors = 1
 
-    " ulti-snippets
-    let g:UltiSnipsExpandTrigger="<tab>"
-    let g:UltiSnipsJumpForwardTrigger="<c-x>"
-    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
     " EchoDoc
-    let g:echodoc#enable_at_startup = 1
+    " let g:echodoc#enable_at_startup = 1
     " &-> lauch echodoc at startup
 
-    let g:echodoc#type = 'floating'
-    highlight link EchoDocFloat Pmenu
+    " let g:echodoc#type = 'floating'
+    " highlight link EchoDocFloat Pmenu
     " &-> uses neovim's float mode
 
     " LaTeX general
@@ -190,6 +197,20 @@
     " COCK.nvim
     nmap <silent> [g <Plug>(coc-diagnostic-prev)
     nmap <silent> ]g <Plug>(coc-diagnostic-next)
+	nmap <silent> gd <Plug>(coc-definition)
+	nmap <silent> gy <Plug>(coc-type-definition)
+	nmap <silent> gi <Plug>(coc-implementation)
+	nmap <silent> gr <Plug>(coc-references)
+
+	inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+	" Use <c-space> to trigger completion
+	if has('nvim')
+	  inoremap <silent><expr> <c-space> coc#refresh()
+	else
+	  inoremap <silent><expr> <c-@> coc#refresh()
+	endif
 
     " HTML
     augroup HTML
@@ -200,5 +221,64 @@
     nmap ga <Plug>(EasyAlign)
     xmap ga <Plug>(EasyAlign)
 
-    " nnn
-    let g:nnn#layout = { 'window': { 'width': 0.9, 'height': 0.6, 'highlight': 'Debug' } }
+    " FZF
+    " nmap <C-p> :GFiles<Cr>
+	nnoremap <silent> <C-p> :if exists("t:NERDTreeBufName") && bufwinnr(t:NERDTreeBufName) == winnr() <Bar> wincmd p <Bar> endif <Bar> GFiles<CR>
+
+    " nerdtree
+	" tree width
+    let NERDTreeWinSize = 25
+
+	" auto open nerdtree
+    autocmd VimEnter * NERDTree | wincmd p
+
+    noremap <Leader>n :NERDTree<Cr>
+
+    autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+    autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+    autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+    " Close the tab if NERDTree is the only window remaining in it.
+    autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
+    " startify
+    let g:startify_custom_header = [
+        \ '   ⣴⣶⣤⡤⠦⣤⣀⣤⠆     ⣈⣭⣿⣶⣿⣦⣼⣆                                                                          ' ,
+        \ '    ⠉⠻⢿⣿⠿⣿⣿⣶⣦⠤⠄⡠⢾⣿⣿⡿⠋⠉⠉⠻⣿⣿⡛⣦                                                                       ' ,
+        \ '          ⠈⢿⣿⣟⠦ ⣾⣿⣿⣷    ⠻⠿⢿⣿⣧⣄                                                                     ' ,
+        \ '           ⣸⣿⣿⢧ ⢻⠻⣿⣿⣷⣄⣀⠄⠢⣀⡀⠈⠙⠿⠄                                                                    ' ,
+        \ '          ⢠⣿⣿⣿⠈    ⣻⣿⣿⣿⣿⣿⣿⣿⣛⣳⣤⣀⣀                                                                   ' ,
+        \ '   ⢠⣧⣶⣥⡤⢄ ⣸⣿⣿⠘  ⢀⣴⣿⣿⡿⠛⣿⣿⣧⠈⢿⠿⠟⠛⠻⠿⠄   _____  _   _  _____  _              _                          ' ,
+        \ '  ⣰⣿⣿⠛⠻⣿⣿⡦⢹⣿⣷   ⢊⣿⣿⡏  ⢸⣿⣿⡇ ⢀⣠⣄⣾⠄   |  ___|| | | ||_   _|| |            (_)                         ' ,
+        \ ' ⣠⣿⠿⠛ ⢀⣿⣿⣷⠘⢿⣿⣦⡀ ⢸⢿⣿⣿⣄ ⣸⣿⣿⡇⣪⣿⡿⠿⣿⣷⡄  | |__  | | | |  | |  | |     __   __ _  _ __ ___                ' ,
+        \ ' ⠙⠃   ⣼⣿⡟  ⠈⠻⣿⣿⣦⣌⡇⠻⣿⣿⣷⣿⣿⣿ ⣿⣿⡇ ⠛⠻⢷⣄ |  __| | | | |  | |  | |     \ \ / /| || |_ \ _ \               ' ,
+        \ '      ⢻⣿⣿⣄   ⠈⠻⣿⣿⣿⣷⣿⣿⣿⣿⣿⡟ ⠫⢿⣿⡆     | |___ \ \_/ / _| |_ | |____ _\ V / | || | | | | |              ' ,
+        \ '       ⠻⣿⣿⣿⣿⣶⣶⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⢀⣀⣤⣾⡿⠃     \____/  \___/  \___/ \_____/(_)\_/  |_||_| |_| |_|              ' ,
+        \ ]
+    if has('nvim')
+      autocmd TabNewEntered * Startify
+    else
+      autocmd BufWinEnter *
+            \ if !exists('t:startify_new_tab')
+            \     && empty(expand('%'))
+            \     && empty(&l:buftype)
+            \     && &l:modifiable |
+            \   let t:startify_new_tab = 1 |
+            \   Startify |
+            \ endif
+    endif
+
+	" ultisnips
+    let g:UltiSnipsExpandTrigger="<tab>"
+    let g:UltiSnipsJumpForwardTrigger="<c-x>"
+    let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+	if has('nvim-0.4.0') || has('patch-8.2.0750')
+	  nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	  nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	  inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+	  inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+	  vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+	  vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+	endif
